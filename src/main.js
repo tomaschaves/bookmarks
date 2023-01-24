@@ -36,36 +36,37 @@ const xablau2 = () => {
 };
 
 // V pega todos os nomes de livros no arquivo e classifica eles por ordem alfabética
-const entries = await xablau2();
-// console.log(entries);
-
-const nameBooks = async () => {
-  const titles = [];
-  titles.push(entries[0].book);
-  entries.forEach((title) => {
-    if(!titles.includes(title.book)) {
-      titles.push(title.book);
-    }
-  });
-  titles.sort();
-  // console.log(titles);
-  return titles;
-};
-
-
-const createMenu = async () => {
-  const names = await nameBooks();
-  const menuArea = document.querySelector('#summary');
-  names.forEach((element) => {
-    const h3 = document.createElement('h3');
-    h3.className = 'indexTitle hidden';
-    const id = element.split(' ').join('_');
-    h3.innerHTML = `<a href="#${id}">${element}</a>`;
-    menuArea.appendChild(h3);
-  })
-}
-
-const putNamesInDOM = async () => {
+xablau2().then((response) => {
+  const entries = response;
+  // console.log(entries);
+  
+  const nameBooks = async () => {
+    const titles = [];
+    titles.push(entries[0].book);
+    entries.forEach((title) => {
+      if(!titles.includes(title.book)) {
+        titles.push(title.book);
+      }
+    });
+    titles.sort();
+    // console.log(titles);
+    return titles;
+  };
+  
+  
+  const createMenu = async () => {
+    const names = await nameBooks();
+    const menuArea = document.querySelector('#summary');
+    names.forEach((element) => {
+      const h3 = document.createElement('h3');
+      h3.className = 'indexTitle hidden';
+      const id = element.split(' ').join('_');
+      h3.innerHTML = `<a href="#${id}">${element}</a>`;
+      menuArea.appendChild(h3);
+    })
+  }
+  
+  const putNamesInDOM = async () => {
     const namesHtml = await nameBooks();
     const booksArea = document.querySelector('#books');
     const br = document.createElement('br');
@@ -100,101 +101,101 @@ const putNamesInDOM = async () => {
             h4.innerHTML = `- ${elementName.text}`;
             h4.className = 'quote hidden';
             element.appendChild(h4);
-      }
-    })
-  })
-}
-
-text();
-
-};
-
-createMenu();
-
-// VER SE CONSIGO FAZER ISSO https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_image_overlay_fade
-
-// Início do código do botão de subir até o topo da página
-// Get the button:
-let mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-const topFunction = () => {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
-
-mybutton.addEventListener('click', topFunction)
-
-// final do código do botão de subir até o topo da página
-
-//para fechar o menu de títulos, caso ele esteja aberto, ao clicar em uma capa. é chamada dentro do elseif na função menuclick
-const hideTitles = () => {
-  const booksIndex = document.querySelectorAll('.indexTitle');
-  if (booksIndex[0].className === 'indexTitle') {
-    booksIndex.forEach((element) => {
-      element.classList.add('hidden');
-    })
-  }
-}
-
-//para fechar o menu de títulos, caso ele esteja aberto, ao clicar em um título. é chamado na última linha da função menuClick; 
-const names = () => {
-  const booksIndex = document.querySelectorAll('.indexTitle');
-  booksIndex.forEach((element) => {
-    element.addEventListener('click', hideTitles);
-  })
-}
-
-const menuButton = document.querySelector('#menuButton');
-
-const menuClick = async () => {
-  await putNamesInDOM();
-  const booksIndexNames = document.querySelectorAll('.image');
-  
-  const click = (event) => {
-    const pai = event.target.parentNode.parentNode;
-    const filhos = pai.childNodes;
-    
-    filhos.forEach((filho) => {
-      if(filho.className === 'quote') {
-        filho.className = 'quote hidden';
-        menuButton.classList.remove('hidden');
-
-      } else if(filho.className === 'quote hidden') {
-        filho.className = 'quote';
-        menuButton.classList.add('hidden');        
-      }
-    })
-
-    const livros = document.querySelectorAll('.book');
-    livros.forEach((livro) => {
-    if (event.target.className == 'book selected' || livro.className === 'book hidden') {
-        livro.className = 'book';
-        event.target.className = 'image';
-        event.target.parentNode.className = 'book';
-    } else if(livro.id.replace(/_/g, ' ') !== event.target.alt) {
-      livro.className = 'book hidden';
-      event.target.className = 'image-selected';
-      event.target.parentNode.className = 'book selected';
+          }
+        })
+      })
     }
+    
+    text();
+    
+  };
+  
+  createMenu();
+  
+  // VER SE CONSIGO FAZER ISSO https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_image_overlay_fade
+  
+  // Início do código do botão de subir até o topo da página
+  // Get the button:
+  let mybutton = document.getElementById("myBtn");
+  
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  const topFunction = () => {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+  
+  mybutton.addEventListener('click', topFunction)
+  
+  // final do código do botão de subir até o topo da página
+  
+  //para fechar o menu de títulos, caso ele esteja aberto, ao clicar em uma capa. é chamada dentro do elseif na função menuclick
+  const hideTitles = () => {
+    const booksIndex = document.querySelectorAll('.indexTitle');
+    if (booksIndex[0].className === 'indexTitle') {
+      booksIndex.forEach((element) => {
+        element.classList.add('hidden');
+      })
+    }
+  }
+  
+  //para fechar o menu de títulos, caso ele esteja aberto, ao clicar em um título. é chamado na última linha da função menuClick; 
+  const names = () => {
+    const booksIndex = document.querySelectorAll('.indexTitle');
+    booksIndex.forEach((element) => {
+      element.addEventListener('click', hideTitles);
     })
+  }
+  
+  const menuButton = document.querySelector('#menuButton');
+
+  const menuClick = async () => {
+    await putNamesInDOM();
+    const booksIndexNames = document.querySelectorAll('.image');
+    
+    const click = (event) => {
+      const pai = event.target.parentNode.parentNode;
+      const filhos = pai.childNodes;
+      
+      filhos.forEach((filho) => {
+        if(filho.className === 'quote') {
+          filho.className = 'quote hidden';
+          menuButton.classList.remove('hidden');
+          
+        } else if(filho.className === 'quote hidden') {
+          filho.className = 'quote';
+          menuButton.classList.add('hidden');        
+        }
+      })
+      
+      const livros = document.querySelectorAll('.book');
+      livros.forEach((livro) => {
+        if (event.target.className == 'book selected' || livro.className === 'book hidden') {
+          livro.className = 'book';
+          event.target.className = 'image';
+          event.target.parentNode.className = 'book';
+        } else if(livro.id.replace(/_/g, ' ') !== event.target.alt) {
+          livro.className = 'book hidden';
+          event.target.className = 'image-selected';
+          event.target.parentNode.className = 'book selected';
+        }
+      })
   }
   
   booksIndexNames.forEach((element) => {
     element.addEventListener('click', click);
   })
-
+  
   names();
 }
 
@@ -216,13 +217,15 @@ const value = () => {
 menuButton.addEventListener('click', value)
 
 // const getSelectedText = () => {
-//   // console.log(window.getSelection().toString());
-//   const selected = window.getSelection().toString();
-//   console.log(selected);
-//   // return selected;
-// }
-
-// const button = document.querySelector('#copyButton');
-// button.addEventListener('click', getSelectedText);
-
-// ideia: fazer uma caixa de busca pelo texto digitado
+  //   // console.log(window.getSelection().toString());
+  //   const selected = window.getSelection().toString();
+  //   console.log(selected);
+  //   // return selected;
+  // }
+  
+  // const button = document.querySelector('#copyButton');
+  // button.addEventListener('click', getSelectedText);
+  
+  // ideia: fazer uma caixa de busca pelo texto digitado
+  
+});
