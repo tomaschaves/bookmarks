@@ -1,11 +1,12 @@
 import './style.css'
+window.onload = () => {
 
-const xablau2 = () => {
-  const oi = fetch('./src/app-Bookmarks.json')
+  const xablau2 = () => {
+    const oi = fetch('./src/app-Bookmarks.json')
     .then(response => response.json())
     .then(data => {
       const xablauArray = Object.values(data);
-
+      
       const all = [];
       xablauArray.forEach((element) => {
         element.path = element.path
@@ -30,67 +31,67 @@ const xablau2 = () => {
           //V classifica as entradas com base na key dela, que mostra onde que ela está (element.t) dentro do livro, no objeto
           all.sort((a, b) => a.key - b.key);
         });
-      return all;
-    });
-    return oi;
-};
-
-// V pega todos os nomes de livros no arquivo e classifica eles por ordem alfabética
-xablau2().then((response) => {
-  const entries = response;
-  // console.log(entries);
-  
-  const nameBooks = async () => {
-    const titles = [];
-    titles.push(entries[0].book);
-    entries.forEach((title) => {
-      if(!titles.includes(title.book)) {
-        titles.push(title.book);
+        return all;
+      });
+      return oi;
+    };
+    
+    // V pega todos os nomes de livros no arquivo e classifica eles por ordem alfabética
+    xablau2().then((response) => {
+      const entries = response;
+      // console.log(entries);
+      
+      const nameBooks = async () => {
+        const titles = [];
+        titles.push(entries[0].book);
+        entries.forEach((title) => {
+          if(!titles.includes(title.book)) {
+            titles.push(title.book);
+          }
+        });
+        titles.sort();
+        // console.log(titles);
+        return titles;
+      };
+      
+      
+      const createMenu = async () => {
+        const names = await nameBooks();
+        const menuArea = document.querySelector('#summary');
+        names.forEach((element) => {
+          const h3 = document.createElement('h3');
+          h3.className = 'indexTitle hidden';
+          const id = element.split(' ').join('_');
+          h3.innerHTML = `<a href="#${id}">${element}</a>`;
+          menuArea.appendChild(h3);
+        })
       }
-    });
-    titles.sort();
-    // console.log(titles);
-    return titles;
-  };
-  
-  
-  const createMenu = async () => {
-    const names = await nameBooks();
-    const menuArea = document.querySelector('#summary');
-    names.forEach((element) => {
-      const h3 = document.createElement('h3');
-      h3.className = 'indexTitle hidden';
-      const id = element.split(' ').join('_');
-      h3.innerHTML = `<a href="#${id}">${element}</a>`;
-      menuArea.appendChild(h3);
-    })
-  }
-  
-  const putNamesInDOM = async () => {
-    const namesHtml = await nameBooks();
-    const booksArea = document.querySelector('#books');
-    const br = document.createElement('br');
-    booksArea.appendChild(br);
-    namesHtml.forEach((book) => {
-      const h3 = document.createElement('h3');
-      h3.id = book.split(' ').join('_'); //criação do id com _ para funcionar no html
-      h3.className = 'book';
-      const h4 = document.createElement('h4');
-      h4.className = 'quote hidden';
-      h4.innerHTML = book;
-      const br = document.createElement('br');
-      //colocando a capa nos livros V
-      const div = document.createElement('div');
-      div.className = 'container';
-      const img = document.createElement('img');
-      img.src = `./covers/${book}.jpg`;
-      img.className = 'image';
-      img.alt = book;
-      div.appendChild(img);
-      h3.appendChild(div);
-      h3.appendChild(h4);
-      booksArea.appendChild(h3);
-    });
+      
+      const putNamesInDOM = async () => {
+        const namesHtml = await nameBooks();
+        const booksArea = document.querySelector('#books');
+        const br = document.createElement('br');
+        booksArea.appendChild(br);
+        namesHtml.forEach((book) => {
+          const h3 = document.createElement('h3');
+          h3.id = book.split(' ').join('_'); //criação do id com _ para funcionar no html
+          h3.className = 'book';
+          const h4 = document.createElement('h4');
+          h4.className = 'quote hidden';
+          h4.innerHTML = book;
+          const br = document.createElement('br');
+          //colocando a capa nos livros V
+          const div = document.createElement('div');
+          div.className = 'container';
+          const img = document.createElement('img');
+          img.src = `./covers/${book}.jpg`;
+          img.className = 'image';
+          img.alt = book;
+          div.appendChild(img);
+          h3.appendChild(div);
+          h3.appendChild(h4);
+          booksArea.appendChild(h3);
+        });
     
     const text = () => {
       const books = document.querySelectorAll('.book');
@@ -158,7 +159,7 @@ xablau2().then((response) => {
   }
   
   const menuButton = document.querySelector('#menuButton');
-
+  
   const menuClick = async () => {
     await putNamesInDOM();
     const booksIndexNames = document.querySelectorAll('.image');
@@ -190,42 +191,43 @@ xablau2().then((response) => {
           event.target.parentNode.className = 'book selected';
         }
       })
+    }
+    
+    booksIndexNames.forEach((element) => {
+      element.addEventListener('click', click);
+    })
+    
+    names();
   }
   
-  booksIndexNames.forEach((element) => {
-    element.addEventListener('click', click);
-  })
+  menuClick();
   
-  names();
-}
-
-menuClick();
-
-const value = () => {
-  const booksIndex = document.querySelectorAll('.indexTitle');
-  if (booksIndex[0].className === 'indexTitle hidden') {
-    booksIndex.forEach((element) => {
-      element.classList.remove('hidden');
-    })
-  } else if (booksIndex[0].className === 'indexTitle') {
-    booksIndex.forEach((element) => {
-      element.classList.add('hidden');
-    })
+  const value = () => {
+    const booksIndex = document.querySelectorAll('.indexTitle');
+    if (booksIndex[0].className === 'indexTitle hidden') {
+      booksIndex.forEach((element) => {
+        element.classList.remove('hidden');
+      })
+    } else if (booksIndex[0].className === 'indexTitle') {
+      booksIndex.forEach((element) => {
+        element.classList.add('hidden');
+      })
+    }
   }
+  
+  menuButton.addEventListener('click', value)
+  
+  // const getSelectedText = () => {
+    //   // console.log(window.getSelection().toString());
+    //   const selected = window.getSelection().toString();
+    //   console.log(selected);
+    //   // return selected;
+    // }
+    
+    // const button = document.querySelector('#copyButton');
+    // button.addEventListener('click', getSelectedText);
+    
+    // ideia: fazer uma caixa de busca pelo texto digitado
+    
+  });
 }
-
-menuButton.addEventListener('click', value)
-
-// const getSelectedText = () => {
-  //   // console.log(window.getSelection().toString());
-  //   const selected = window.getSelection().toString();
-  //   console.log(selected);
-  //   // return selected;
-  // }
-  
-  // const button = document.querySelector('#copyButton');
-  // button.addEventListener('click', getSelectedText);
-  
-  // ideia: fazer uma caixa de busca pelo texto digitado
-  
-});
