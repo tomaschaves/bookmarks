@@ -1,5 +1,2 @@
 /node_modules
-/fonts
-covers.js
-package-lock.json
-package.json
+/public

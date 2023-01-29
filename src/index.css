@@ -9,27 +9,8 @@ body {
   src: url(/fonts/CinderelaPersonalUseRegular-RDvM.ttf);
 } */
 
-h4 {
-  font-size: large;
-  font-weight: 100;
-  font-family: customFonts;
-  border-radius: 25px;
-  border: 2px solid aliceblue ;
-  padding: 20px;
-  box-shadow: 5px 5px 10px 0px gray;
-}
-
-h3 { 
-  margin: auto
-}
-
-h4:hover {
-  border: 2px solid gold;
-}
-
 h2 {
   font-size: medium;
-  /* color: red; */
 }
 
 img {
@@ -40,23 +21,27 @@ img {
 }
 
 #books {
-  /* width: 100px; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .quote {
-  /* width: 600px;
-  height: auto; */
   display: flex;
-  /* flex-direction: row; */
 }
 
-/* h3 {
+h3 {
+  margin: auto;
   justify-content: center; 
   align-items: center;
-} */
+}
+
+.quoteTitle {
+  text-align: center;
+  font-size: x-large;
+  border: 2px solid gold;
+  justify-content: center;
+}
 
 .selected img {
   border-radius: 1cm;
@@ -68,18 +53,13 @@ img {
 .selected {
   display: flex;
   justify-content: center;
-  /* clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); */
 }
 
 .image {
   border-radius: 1cm;
   box-shadow: 5px 5px 10px 0px gray;
   transition: 0.5s;
-  /* clip-path: polygon(40% 0, 60% 0, 60% 100%, 40% 100%); */
 }
-/* .book {
-
-} */
 
 #summary {
   display: flex;
@@ -87,14 +67,29 @@ img {
   flex-wrap: wrap;
 }
 
-/* image:hover:not(:hover){
-  opacity: 0.3
-} */
-
 .image:hover {
   border-radius: 1cm;
   border: 5px solid gold;
   scale: 1.1;
+}
+
+h4 {
+  font-size: large;
+  font-weight: 100;
+  font-family: customFonts;
+  border-radius: 25px;
+  border: 2px solid aliceblue ;
+  padding: 20px;
+  box-shadow: 5px 5px 10px 0px gray;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-items: center;
+}
+
+h4:hover {
+  border: 2px solid gold;
 }
 
 @media (max-width: 400px) {
@@ -105,33 +100,23 @@ img {
 
   .selected img {
     border-radius: 1cm;
-    /* border: 5px solid gold; */
     width: 300px;
     height: 400px;
   }
 
   .indexTitle {
-    font-size: small;
-  }
 
-  .indexTitle {
-    display: flex;
     flex-direction: row;
-    width: 100px;
+    width: 300px;
     height: fit-content;
     border-radius: 1cm;
     border: 5px solid silver;
-    /* background-color: ; */
     text-align: center;
   }
 
 }
 
 @media (min-width: 1000px) {
-  h4 {
-    width: 60rem;
-    font-size: larger;
-  }
   .indexTitle {
     display: flex;
     flex-direction: row;
@@ -139,7 +124,6 @@ img {
     height: fit-content;
     border-radius: 1cm;
     border: 5px solid silver;
-    /* background-color: ; */
     text-align: center;
   }
 }
@@ -163,46 +147,6 @@ img {
 #myBtn:hover {
   background-color: #555; /* Add a dark-grey background on hover */
 }
-
-/* .container {
-  position: relative;
-  width: 50%;
-}
-
-.image {
-  /* display: block; */
-  /* width: 100%;
-  height: auto;
-}*/
-
-/* .overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: auto;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #008CBA;
-} */
-
-/* .container:hover .overlay {
-  opacity: 0.8;
-} */
-
-/* .text {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-} */
 
 .hidden {
   display: none;
