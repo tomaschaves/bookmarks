@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./src/static/css/main.a85c902c.css",
-    "main.js": "./src/static/js/main.6b2886a2.js",
+    "main.css": "./src/static/css/main.494fe3d3.css",
+    "main.js": "./src/static/js/main.60653c91.js",
     "static/js/787.f2d4af66.chunk.js": "./src/static/js/787.f2d4af66.chunk.js",
     "static/media/Chillin in Another World With Level 2 Super Cheat Powers - Volume 01.jpg": "./src/static/media/Chillin in Another World With Level 2 Super Cheat Powers - Volume 01.a137f4ccddcb43decdf0.jpg",
     "static/media/Chillin in Another World With Level 2 Super Cheat Powers - Volume 02.jpg": "./src/static/media/Chillin in Another World With Level 2 Super Cheat Powers - Volume 02.661512bb30d59f719823.jpg",
@@ -133,12 +133,12 @@
     "static/media/DanMachi - Volume 15.jpg": "./src/static/media/DanMachi - Volume 15.0a3967eb56e02a2e3d6c.jpg",
     "static/media/Arifureta Shokugyou de Sekai Saikyou - Volume 04.jpg": "./src/static/media/Arifureta Shokugyou de Sekai Saikyou - Volume 04.4cf9a71d967358b247ef.jpg",
     "index.html": "./src/index.html",
-    "main.a85c902c.css.map": "./src/static/css/main.a85c902c.css.map",
-    "main.6b2886a2.js.map": "./src/static/js/main.6b2886a2.js.map",
+    "main.494fe3d3.css.map": "./src/static/css/main.494fe3d3.css.map",
+    "main.60653c91.js.map": "./src/static/js/main.60653c91.js.map",
     "787.f2d4af66.chunk.js.map": "./src/static/js/787.f2d4af66.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a85c902c.css",
-    "static/js/main.6b2886a2.js"
+    "static/css/main.494fe3d3.css",
+    "static/js/main.60653c91.js"
   ]
 }
