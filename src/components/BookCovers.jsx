@@ -17,6 +17,7 @@ export default class Books extends Component {
   arrayOfEntries = Object.entries(this.objectFromJSON);
   
   componentDidMount() {
+    this.scrollFunction();
     const allEntries = [];
     const bookNames = [];
     
@@ -128,7 +129,7 @@ export default class Books extends Component {
           <IndexButton />
           <textarea id='search'  onChange={this.handleChange}></textarea>
         </div>
-      <h2 id='books'>
+      <div id='books'>
         {
           search ? entriesSearchBooks
           .sort()
@@ -155,7 +156,7 @@ export default class Books extends Component {
           })
         }
       <button type='button' id='myBtn' onClick={this.topFunction}>Topo</button>
-      </h2>
+      </div>
       </div>
     )
   }

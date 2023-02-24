@@ -76,7 +76,7 @@ export default class IndexButton extends Component {
               <button type='button' className='indexButton' onClick={this.clickMenu}>Índice</button>
               )
             }
-      <h2 id='summary'>
+      <div id='summary'>
       {
         clicked && names.map((element) => (
           <h3 className='indexTitle'>
@@ -84,7 +84,7 @@ export default class IndexButton extends Component {
           </h3>
         ))
       }
-      </h2>
+      </div>
       </div>
     )
   }

@@ -96,18 +96,18 @@ export default class Quotes extends Component {
   
     const { src, entriesFilter } = this.state;
     return (
-      <h3 className='book'>
+      <div className='book'>
         <div className='book selected'>
           <img src={ this.findImage(src) } alt={ src } onClick={ this.homeComing } />
         </div>
         <h4 className='quoteTitle'>{ src }</h4>
         {
           entriesFilter.map((entrie) => (
-            <Quote text={ entrie.text } />
+            <Quote key={ entrie.text } text={ entrie.text } />
           ))
         }
         <button type='button' id='myBtn' onClick={this.homeComing}>Home</button>
-      </h3>
+      </div>
     )
   }
 }
