@@ -9,6 +9,20 @@ body {
   src: url(/fonts/CinderelaPersonalUseRegular-RDvM.ttf);
 } */
 
+textarea {
+  width: 200px;
+  height: 24px;
+  resize: none;
+}
+
+.indexButton {
+  height: 30px;
+}
+
+.menu {
+  display: flex;
+}
+
 h2 {
   font-size: medium;
 }

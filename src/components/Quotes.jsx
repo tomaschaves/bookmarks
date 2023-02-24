@@ -6,6 +6,7 @@ export default class Quotes extends Component {
   homeComing = () => {
     const { history } = this.props;
     history.push('/');
+    this.topFunction();
   }
 
   state = {
@@ -105,7 +106,7 @@ export default class Quotes extends Component {
             <Quote text={ entrie.text } />
           ))
         }
-        <button type='button' id='myBtn' onClick={this.topFunction}>Topo</button>
+        <button type='button' id='myBtn' onClick={this.homeComing}>Home</button>
       </h3>
     )
   }
