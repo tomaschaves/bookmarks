@@ -8,6 +8,9 @@ export default class Books extends Component {
     entriesFilter: [],
     bookTitles: [],
     clicked: '',
+    search: '',
+    entriesSearch:[],
+    entriesSearchBooks:[],
   }
 
   objectFromJSON = require('../app-Bookmarks.json');
@@ -89,26 +92,68 @@ export default class Books extends Component {
       mybutton.style.display = "none";
     }
   }
+
+  searchQuote = () => {
+    const { entries, search } = this.state;
+    const searchedTermBookContainer = entries.filter((element) => element.text.toLowerCase().includes(search));
+      const searchedBooks = [];
+      searchedTermBookContainer.forEach((element) => {
+
+        if(!searchedBooks.includes(element.book) || searchedBooks === undefined) {
+          searchedBooks.push(element.book);
+        }
+        });
+      this.setState({
+        entriesSearch: searchedTermBookContainer,
+        entriesSearchBooks: searchedBooks,
+      });
+  }
+
+  handleChange = ({ target }) => {
+    this.setState({
+      search: target.value,
+    }, () => this.searchQuote());
+  }
   
   render() {
     const { 
       bookTitles,
+      search,
+      entriesSearchBooks,
     } = this.state;
+
     return (
       <div>
-      <IndexButton />
+        <div className='menu'>
+          <IndexButton />
+          <textarea id='search'  onChange={this.handleChange}></textarea>
+        </div>
       <h2 id='books'>
-        {bookTitles.map((element) => {
-          return(
-            <h3 className='book' key={element} id={element.replace(/ /g,'_').replace(/'/g,'')}>
-              <div className='container'>
-              <img src={ this.findImage(element) } className='image' alt={ element } onClick={ () => this.filterQuotes(element)}/>
-              
-              </div>
-            </h3>
-          )
-        })
-      }
+        {
+          search ? entriesSearchBooks
+          .sort()
+          .map((elementMap) => {
+            return(
+              <h3 className='book' key={elementMap} id={elementMap.replace(/ /g,'_').replace(/'/g,'')}>
+                <div className='container'>
+                <img src={ this.findImage(elementMap) } className='image' alt={ elementMap } onClick={ () => this.filterQuotes(elementMap)}/>
+                
+                </div>
+              </h3>
+            )
+          })
+          : 
+          bookTitles.map((element) => {
+            return(
+              <h3 className='book' key={element} id={element.replace(/ /g,'_').replace(/'/g,'')}>
+                <div className='container'>
+                <img src={ this.findImage(element) } className='image' alt={ element } onClick={ () => this.filterQuotes(element)}/>
+                
+                </div>
+              </h3>
+            )
+          })
+        }
       <button type='button' id='myBtn' onClick={this.topFunction}>Topo</button>
       </h2>
       </div>

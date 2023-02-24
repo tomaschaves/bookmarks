@@ -73,7 +73,7 @@ export default class IndexButton extends Component {
           {
             names && (
               
-              <button type='button' onClick={this.clickMenu}>Índice</button>
+              <button type='button' className='indexButton' onClick={this.clickMenu}>Índice</button>
               )
             }
       <h2 id='summary'>
